@@ -1,24 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Result</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <title>Image Rotation - Result</title>
 </head>
 <body>
-    <h1>Result</h1>
-    <h2>Original Image: {{ orig }}</h2>
-    <img src="{{ url_for('uploaded_file', filename='orig.png') }}" alt="Original Image">
-    <h2>rotated Image</h2>
-    <img src="{{ url_for('uploaded_file', filename='rotated.png') }}" alt="rotated Image">
+    <h1>Image Rotation - Result</h1>
+    <h2>Original Image</h2>
+    <img src="{{ url_for('uploaded_file', filename=orig) }}" alt="Original Image" width="500">
     <h2>Color Distribution</h2>
-    <img src="{{ url_for('uploaded_file', filename='plot.png') }}" alt="Color Distribution">
-    <button onclick="history.back()">Go back</button>
+    <img src="data:image/png;base64,{{ plot }}" alt="Color Distribution" width="800">
+    <h2>Rotated Image</h2>
+    <img src="{{ url_for('uploaded_file', filename=result_filename) }}" alt="Rotated Image" width="500">
 </body>
 </html>
