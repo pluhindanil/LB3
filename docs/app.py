@@ -19,6 +19,8 @@ def resize():
     file = request.files.get('file')
     width = int(request.form.get('width'))
     height = int(request.form.get('height'))
+    rotation = int(request.form.get('rotation', 0))
+    flip = bool(request.form.get('flip'))
 
     # Check if a file was uploaded
     if not file:
@@ -43,6 +45,11 @@ def resize():
     img = Image.open(file)
     resized_img = img.resize((width, height))
 
+      rotated_img = resized_img.rotate(rotation)
+
+    # Flip the image if the flip flag is set
+    if flip:
+        rotated_img = ImageOps.mirror(rotated_img)
     # Calculate color distributions of original and resized images
     orig_colors = get_color_distribution(img)
     resized_colors = get_color_distribution(resized_img)
